@@ -28,7 +28,7 @@ app.post('/webhook', function (req, res) {
         var event = events[i];
         console.log("\n\nThis is first\n\n")
         if (event.message && event.message.text) {
-        		console.log("\n\nevent is ok\n\nmessage is " + event.messgae.text)
+        		console.log("\n\nevent is ok\n\nmessage is " + event.message.text)
             sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         }
     }
