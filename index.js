@@ -26,9 +26,7 @@ app.post('/webhook', function (req, res) {
     var events = req.body.entry[0].messaging;
     for (i = 0; i < events.length; i++) {
         var event = events[i];
-        console.log("\n\nThis is first\n\n")
         if (event.message && event.message.text) {
-        		console.log("\n\nevent is ok\n\nmessage is " + event.message.text)
             sendMessage(event.sender.id, {text: "Echo: " + event.message.text});
         }
     }
@@ -43,7 +41,7 @@ function sendMessage(recipientId, message) {
         qs: {access_token: process.env.PAGE_ACCESS_TOKEN},
         method: 'POST',
         json: {
-            recipient: {id: "EAAZA8ZCPBu1Y8BANW0i631NAjTVi3OCRXOlB3A4w4iZBsSbHFXZA98RJ5O9XftMBua6ZBU1tEZCxAe6hdqIntW6ZB77YbIWDCFZB3BHZC2fwAol9vUoqTQJQHY7eH2qPpbiL84rIu7VJ6MgTRZCZCvnKLrnBYFSV0VCbHcoEzCXZBZAUeLQZDZD"},
+            recipient: {id: recipientId},
             message: message,
         }
     }, function(error, response, body) {
