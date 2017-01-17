@@ -69,7 +69,7 @@ function sendTextMessage(sender, text) {
 
 
 function sendGenericMessage(sender) {
-    var firstcard = [{
+    firstcard = [{
                     "title": "First card",
                     "subtitle": "Element #1 of an hscroll",
                     "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
