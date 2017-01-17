@@ -69,12 +69,7 @@ function sendTextMessage(sender, text) {
 
 
 function sendGenericMessage(sender) {
-    let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
+    var first_card = {
                     "title": "First card",
                     "subtitle": "Element #1 of an hscroll",
                     "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
@@ -87,7 +82,13 @@ function sendGenericMessage(sender) {
                         "title": "Postback",
                         "payload": "Payload for first element in a generic bubble",
                     }],
-                }, {
+                };
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [first_card, {
                     "title": "Second card",
                     "subtitle": "Element #2 of an hscroll",
                     "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
