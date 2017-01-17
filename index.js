@@ -67,7 +67,9 @@ function sendTextMessage(sender, text) {
     })
 }
 
-var firstcard = [{
+
+function sendGenericMessage(sender) {
+    var firstcard = [{
                     "title": "First card",
                     "subtitle": "Element #1 of an hscroll",
                     "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
@@ -80,7 +82,6 @@ var firstcard = [{
                         "title": "Postback",
                         "payload": "Payload for first element in a generic bubble",
                     }];
-function sendGenericMessage(sender) {
     let messageData = {
         "attachment": {
             "type": "template",
