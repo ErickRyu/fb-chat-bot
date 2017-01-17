@@ -81,7 +81,7 @@ function sendGenericMessage(sender) {
                         "type": "postback",
                         "title": "Postback",
                         "payload": "Payload for first element in a generic bubble",
-                    }];
+                    }]
     let messageData = {
         "attachment": {
             "type": "template",
