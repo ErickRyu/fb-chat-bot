@@ -21,6 +21,8 @@ app.get('/webhook', function (req, res) {
     }
 });
 
+
+var hello_messages = ['Hello!', 'Hi', "yeah!"]
 // handler receiving messages
   app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
@@ -31,6 +33,10 @@ app.get('/webhook', function (req, res) {
         let text = event.message.text
         if (text === 'Generic') {
             sendGenericMessage(sender)
+            continue
+        }
+        if (text === 'hello'){
+            sendTextMessage(sender, hello_messages[0])
             continue
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
