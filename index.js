@@ -20,7 +20,7 @@ app.get('/webhook', function (req, res) {
         res.send('Invalid verify token');
     }
 });
-var hello_messages = ['안녕!', '반가워!', '응! 안녕~', '심심했는데ㅋㅋ 안녕!'];
+
 // handler receiving messages
   app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
@@ -34,6 +34,7 @@ var hello_messages = ['안녕!', '반가워!', '응! 안녕~', '심심했는데�
             continue
         }
         if (text === '안녕'){
+            var hello_messages = ['안녕!', '반가워!', '응! 안녕~', '심심했는데ㅋㅋ 안녕!'];
             sendTextMessage(sender, hello_messages[Math.floor(Math.random * hello_messages.length)])
       }
         }
@@ -53,6 +54,7 @@ const token = process.env.PAGE_ACCESS_TOKEN
 
 // generic function sending messages
 function sendTextMessage(sender, text) {
+
     let messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
