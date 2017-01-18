@@ -29,21 +29,15 @@ app.get('/webhook', function (req, res) {
       let sender = event.sender.id
       if (event.message && event.message.text) {
         let text = event.message.text
-        if (text === '카드보내') {
+        if (text === 'Generic') {
             sendGenericMessage(sender)
             continue
-        }
-        if (text === '안녕'){
-            // var hello_messages = ['안녕!', '반가워!', '응! 안녕~', '심심했는데ㅋㅋ 안녕!'];
-            sendTextMessage(sender, '안녕!')
-            continue;
-      }
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
-        sendTextMessage(sender, "Postback received : "+text.substring(0, 200), token)
+        sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
         continue
       }
     }
@@ -55,7 +49,6 @@ const token = process.env.PAGE_ACCESS_TOKEN
 
 // generic function sending messages
 function sendTextMessage(sender, text) {
-
     let messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
