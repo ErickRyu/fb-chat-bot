@@ -36,7 +36,7 @@ var hello_messages = ['Hello!', 'Hi', "yeah!"]
             continue
         }
         if (text === 'hello'){
-            sendTextMessage(sender, hello_messages[0])
+            sendTextMessage(sender, hello_messages[Math.floor(Math.random() * hello_messages.length)])
             continue
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
