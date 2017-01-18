@@ -34,8 +34,9 @@ app.get('/webhook', function (req, res) {
             continue
         }
         if (text === '안녕'){
-            var hello_messages = ['안녕!', '반가워!', '응! 안녕~', '심심했는데ㅋㅋ 안녕!'];
-            sendTextMessage(sender, hello_messages[Math.floor(Math.random * hello_messages.length)])
+            // var hello_messages = ['안녕!', '반가워!', '응! 안녕~', '심심했는데ㅋㅋ 안녕!'];
+            sendTextMessage(sender, '안녕!')
+            continue;
       }
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
