@@ -20,7 +20,7 @@ app.get('/webhook', function (req, res) {
         res.send('Invalid verify token');
     }
 });
-
+var hello_messages = ['안녕!', '반가워!', '응! 안녕~', '심심했는데ㅋㅋ 안녕!'];
 // handler receiving messages
   app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
@@ -29,15 +29,19 @@ app.get('/webhook', function (req, res) {
       let sender = event.sender.id
       if (event.message && event.message.text) {
         let text = event.message.text
-        if (text === 'Generic') {
+        if (text === '카드보내') {
             sendGenericMessage(sender)
             continue
+        }
+        if (text === '안녕'){
+            sendTextMessage(sender, hello_messages[Math.floor(Math.random * hello_messages.length)])
+      }
         }
         sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
-        sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+        sendTextMessage(sender, "Postback received : "+text.substring(0, 200), token)
         continue
       }
     }
@@ -83,12 +87,7 @@ function sendGenericMessage(sender) {
                         "payload": "Payload for first element in a generic bubble",
                     }],
                 };
-    let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [first_card, {
+    var second_card = {
                     "title": "Second card",
                     "subtitle": "Element #2 of an hscroll",
                     "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
@@ -97,7 +96,13 @@ function sendGenericMessage(sender) {
                         "title": "Postback",
                         "payload": "Payload for second element in a generic bubble",
                     }],
-                }]
+                };
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [first_card, second_card]
             }
         }
     }
